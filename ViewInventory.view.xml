@@ -1,0 +1,86 @@
+ <mvc:View controllerName="claims.Entrego.view.ViewInventory"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:m="sap.m"
+  xmlns:u="sap.ui.unified"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:l="sap.ui.layout"
+  xmlns="sap.ui.table"
+  xmlns:html="http://www.w3.org/1999/xhtml">
+ 	<m:Page title="Inventory" id="">
+        <m:content>
+          <TreeTable id="Inventory"  visibleRowCount="12" enableCellFilter="true"
+            filter="filterInquiry" selectionMode="MultiToggle" enableSelectAll="false" ariaLabelledBy="title"
+            rows="{path:'oModel>/InventoryRecord', parameters: {arrayNames:['']}}">
+
+                    <columns>
+                              <Column width="10rem" filterProperty="SKU_Name">
+                                <m:Label text="Name"/>
+                                <template>
+                                  <m:Link text="{oModel>SKU_Name}"
+                                    href="{ProductPicUrl}"
+                                    press="ViewRecord"/>
+                                </template>
+                              </Column>
+
+                              <!-- <Column width="10rem">
+                                <m:Label text="SKU"/>
+                                <template>
+                                  <m:ObjectStatus class="sapUiSmallMarginBottom" textAlign="Center" text="{oModel>Status}" inverted="true" state="{oModel>State}" />
+                                </template>
+                              </Column> -->
+
+                              <Column width="6rem" filterProperty="SKU_Code">
+                                <m:Label text="SKU"/>
+                                <template>
+                                  <m:Text text="{oModel>SKU_Code}" wrapping="true"/>
+                                </template>
+                              </Column>
+
+                              <Column width="39rem" filterProperty="SKU_Description" wrapping="true">
+                                <m:Label text="Description"/>
+                                <template>
+                                  <m:Text text="{oModel>SKU_Description}" wrapping="true"/>
+                                </template>
+                              </Column>
+
+                             <Column width="5rem" filterProperty="Category">
+                                <m:Label text="Category"/>
+                                <template>
+                                  <m:Text text="{oModel>Category}" wrapping="false"/>
+                                </template>
+                              </Column>
+
+                              <Column width="6rem">
+                                <m:Label text="Price"/>
+                                <template>
+                                  <m:Text text="{oModel>Price}" wrapping="false"/>
+                                </template>
+                              </Column>
+
+                              <Column width="5rem">
+                                <m:Label text="Quantity"/>
+                                <template>
+                                  <m:Text text="{oModel>Quantity}" wrapping="false"/>
+                                </template>
+                              </Column>
+
+                              <Column width="4em" filterProperty="UnitOfMeasure">
+                                <m:Label text="UoM"/>
+                                <template>
+                                  <m:Text text="{oModel>UnitOfMeasure}" wrapping="false"/>
+                                </template>
+                              </Column>
+
+                              <Column width="5rem" filterProperty="iStatus">
+                                <m:Label text="Status"/>
+                                <template>
+                                  <m:ObjectStatus class="sapUiSmallMarginBottom" textAlign="Center" text="{oModel>iStatus}" inverted="true" state="{oModel>State}" />
+                                </template>
+                              </Column>
+
+                    </columns>
+                </TreeTable>
+        </m:content>
+	</m:Page>
+</mvc:View>

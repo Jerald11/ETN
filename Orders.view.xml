@@ -1,0 +1,291 @@
+ <mvc:View controllerName="claims.Entrego.view.Orders"
+  displayBlock="true"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:m="sap.m"
+  xmlns:u="sap.ui.unified"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:l="sap.ui.layout"
+  xmlns="sap.ui.table"
+  xmlns:html="http://www.w3.org/1999/xhtml">
+  <m:Page title="My Orders">
+      <m:IconTabBar id="iddash" headerMode="Inline" class="SAPFiori">
+          <m:items class="SAPFiori">
+            <m:IconTabFilter id="CartID" icon="sap-icon://cart" visible="true" class="SAPFiori" text="Cart" key="Cart">
+            
+                    <m:content>
+                    <m:OverflowToolbar>
+                      <m:Title id="amountid" level="H3" text="P0.00" />
+                      <m:ToolbarSpacer/>
+                       <m:ToolbarSpacer/>
+                       <m:Button text="Place Order" icon="sap-icon://cart" press="OnCreateOrder"/>
+                    </m:OverflowToolbar>
+
+                    <TreeTable id="Inventory" enableCellFilter="true" rowSelectionChange="onCompute"  visibleRowCount="12"
+                      filter="filterInquiry" selectionMode="MultiToggle" ariaLabelledBy="title"
+                      rows="{path:'oModel>/InventoryRecord', parameters: {arrayNames:['']}}">
+                              <columns>
+                                        <Column width="9rem" filterProperty="SKU_Name">
+                                          <m:Label text="Name"/>
+                                          <template>
+                                            <m:Link text="{oModel>SKU_Name}"
+                                              href="{ProductPicUrl}"
+                                              press="ViewRecord"/>
+                                          </template>
+                                        </Column>
+
+                                        <Column width="6rem" filterProperty="SKU_Code">
+                                          <m:Label text="SKU"/>
+                                          <template>
+                                            <m:Text text="{oModel>SKU_Code}" wrapping="true"/>
+                                          </template>
+                                        </Column>
+
+                                        <Column width="41rem" filterProperty="SKU_Description" wrapping="true">
+                                          <m:Label text="Description"/>
+                                          <template>
+                                            <m:Text text="{oModel>SKU_Description}" wrapping="true"/>
+                                          </template>
+                                        </Column>
+
+                                      <Column width="5em" filterProperty="Category">
+                                          <m:Label text="Category"/>
+                                          <template>
+                                            <m:Text text="{oModel>Category}" wrapping="false"/>
+                                          </template>
+                                        </Column>
+
+                                        <Column width="7rem">
+                                          <m:Label text="Price"/>
+                                          <template>
+                                            <m:Text text="{oModel>Price}" wrapping="false"/>
+                                          </template>
+                                        </Column>
+
+                                        <Column width="4em" filterProperty="UnitOfMeasure">
+                                          <m:Label text="UoM"/>
+                                          <template>
+                                            <m:Text text="{oModel>UnitOfMeasure}" wrapping="false"/>
+                                          </template>
+                                        </Column>
+
+                                         <Column width="6em" filterProperty="ExpiryTime">
+                                          <m:Label text="Expiry"/>
+                                          <template>
+                                            <m:Text text="{oModel>ExpiryTime}" wrapping="false"/>
+                                          </template>
+                                        </Column>
+
+                              </columns>
+                          </TreeTable>
+                  </m:content>
+            </m:IconTabFilter>
+
+         
+
+            <m:IconTabFilter id="OrderID" icon="sap-icon://activities" visible="true" class="SAPFiori" text="Ordered" key="Order">
+                        <m:content>
+                        <m:OverflowToolbar>
+                           <u:FileUploader class="InputDescripTionHidden" icon="sap-icon://attachment" width="0rem" buttonText="Atatchment" id="fileUploader1" name="myFileUpload" change="handleAttachment" placeholder=""/>       
+                          <m:ToolbarSpacer width="85%"/>
+                          <!-- <m:Title id="amountid" level="H3" text="P0.00" /> -->
+                        </m:OverflowToolbar>
+                        <TreeTable id="Orders" enableCellFilter="true"  visibleRowCount="12"
+                          filter="filterInquiry" selectionMode="MultiToggle" ariaLabelledBy="title"
+                          rows="{path:'oModel>/Ordered', parameters: {arrayNames:['Details']}}">
+                                  <columns>
+                                            <Column width="10rem" filterProperty="TransactionID">
+                                              <m:Label text="Transaction"/>
+                                              <template>
+                                                <m:Link text="{oModel>TransactionID}"
+                                                  href="{ProductPicUrl}"
+                                                  press="ViewRecord"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="8rem">
+                                              <m:Label text="Total Quantity"/>
+                                              <template>
+                                                <m:Text text="{oModel>Count}" wrapping="true"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="10rem" filterProperty="Discount" wrapping="true">
+                                              <m:Label text="Discount"/>
+                                              <template>
+                                                <m:Text text="{oModel>Discount}" wrapping="true"/>
+                                              </template>
+                                            </Column>
+
+                                          <Column width="10rem" filterProperty="OrderDate">
+                                              <m:Label text="Order Date"/>
+                                              <template>
+                                                <m:Text text="{oModel>OrderDate}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="27rem" filterProperty="Duration">
+                                              <m:Label text="Expiration"/>
+                                              <template>
+                                                <m:Text text="{oModel>Duration}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="6rem">
+                                              <m:Label text="Amount"/>
+                                              <template>
+                                                <m:Text text="{oModel>Amount}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="7em" filterProperty="Charge">
+                                              <m:Label text="Shipping Fee"/>
+                                              <template>
+                                                <m:Text text="{oModel>Charge}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+                                  </columns>
+                              </TreeTable>
+                      </m:content>
+            </m:IconTabFilter>
+
+
+        
+            <m:IconTabFilter id="PaidID"  icon="sap-icon://monitor-payments"  visible="true" class="SAPFiori" text="Paid Order" key="Paid">
+                        <m:content>
+                        <m:OverflowToolbar>
+                          <!-- <m:Button text="Attach proof" icon="sap-icon://attachment" press=""/>
+                          <m:ToolbarSpacer width="85%"/> -->
+                          <!-- <m:Title id="amountid" level="H3" text="P0.00" /> -->
+                        </m:OverflowToolbar>
+                        <TreeTable id="paidTable" enableCellFilter="true"  visibleRowCount="12"
+                          filter="filterInquiry" selectionMode="MultiToggle" ariaLabelledBy="title"
+                          rows="{path:'oModel>/Paid', parameters: {arrayNames:['Details']}}">
+                                 <columns>
+                                            <Column width="10rem" filterProperty="TransactionID">
+                                              <m:Label text="Transaction"/>
+                                              <template>
+                                                <m:Link text="{oModel>TransactionID}"
+                                                  href="{ProductPicUrl}"
+                                                  press="ViewRecord"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="8rem">
+                                              <m:Label text="Total Quantity"/>
+                                              <template>
+                                                <m:Text text="{oModel>Count}" wrapping="true"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="10rem" filterProperty="Discount" wrapping="true">
+                                              <m:Label text="Discount"/>
+                                              <template>
+                                                <m:Text text="{oModel>Discount}" wrapping="true"/>
+                                              </template>
+                                            </Column>
+
+                                          <Column width="10rem" filterProperty="OrderDate">
+                                              <m:Label text="Order Date"/>
+                                              <template>
+                                                <m:Text text="{oModel>OrderDate}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="27rem" filterProperty="Duration">
+                                              <m:Label text="Expiration"/>
+                                              <template>
+                                                <m:Text text="{oModel>Duration}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="6rem">
+                                              <m:Label text="Amount"/>
+                                              <template>
+                                                <m:Text text="{oModel>Amount}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="7em" filterProperty="Charge">
+                                              <m:Label text="Shipping Fee"/>
+                                              <template>
+                                                <m:Text text="{oModel>Charge}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+                                  </columns>
+                              </TreeTable>
+                      </m:content>
+            </m:IconTabFilter>
+
+
+        <m:IconTabFilter id="RejectID" icon="sap-icon://employee-rejections" visible="true" class="SAPFiori" text="Reject Order" key="Reject">
+                    <m:content>
+                    <m:OverflowToolbar>
+                      <m:Button text="Re-Upload" icon="sap-icon://attachment" press=""/>
+                      <m:ToolbarSpacer width="50%"/>
+                      <!-- <m:Title id="amountid" level="H3" text="P0.00" /> -->
+                    </m:OverflowToolbar>
+                    <TreeTable id="rejectTable" enableCellFilter="true"  visibleRowCount="12"
+                      filter="filterInquiry" selectionMode="MultiToggle" ariaLabelledBy="title"
+                      rows="{path:'oModel>/myOrders', parameters: {arrayNames:['']}}">
+                              <columns>
+                                            <Column width="10rem" filterProperty="TransactionID">
+                                              <m:Label text="Transaction"/>
+                                              <template>
+                                                <m:Link text="{oModel>TransactionID}"
+                                                  href="{ProductPicUrl}"
+                                                  press="ViewRecord"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="8rem">
+                                              <m:Label text="Total Quantity"/>
+                                              <template>
+                                                <m:Text text="{oModel>Count}" wrapping="true"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="10rem" filterProperty="Discount" wrapping="true">
+                                              <m:Label text="Discount"/>
+                                              <template>
+                                                <m:Text text="{oModel>Discount}" wrapping="true"/>
+                                              </template>
+                                            </Column>
+
+                                          <Column width="10rem" filterProperty="OrderDate">
+                                              <m:Label text="Order Date"/>
+                                              <template>
+                                                <m:Text text="{oModel>OrderDate}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="27rem" filterProperty="Duration">
+                                              <m:Label text="Expiration"/>
+                                              <template>
+                                                <m:Text text="{oModel>Duration}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="6rem">
+                                              <m:Label text="Amount"/>
+                                              <template>
+                                                <m:Text text="{oModel>Amount}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+
+                                            <Column width="7em" filterProperty="Charge">
+                                              <m:Label text="Shipping Fee"/>
+                                              <template>
+                                                <m:Text text="{oModel>Charge}" wrapping="false"/>
+                                              </template>
+                                            </Column>
+                                  </columns>
+                          </TreeTable>
+                  </m:content>
+            </m:IconTabFilter>
+
+
+          </m:items>
+        </m:IconTabBar>
+</m:Page>
+</mvc:View>

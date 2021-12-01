@@ -1,0 +1,46 @@
+ <mvc:View height="100%"
+  controllerName="claims.Entrego.view.Main"
+  displayBlock="true"
+  xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:chart="sap.suite.ui.microchart"
+	xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout"
+	xmlns:tnt="sap.tnt"
+  xmlns:html="http://www.w3.org/1999/xhtml">
+  	<tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<f:ShellBar title="" homeIcon="./resources/img/Icon.png" id="shellidDESK" class="myShellBar" showMenuButton="true" homeIconPressed="onDashBoard" showCopilot="false"
+				menuButtonPressed="onMenuButtonPress" showNotifications="true" notificationsNumber="3" notificationsPressed="onAlert">
+        <f:additionalContent>
+        <Button width="8em" id="ShelluserName" icon="sap-icon://customer"  type="Transparent" press="">
+          <layoutData>
+            <OverflowToolbarLayoutData priority="NeverOverflow" />
+          </layoutData>
+        </Button>
+      </f:additionalContent>
+      </f:ShellBar>
+		</tnt:header>
+		<tnt:sideContent>
+
+        <tnt:SideNavigation expanded="true" selectedKey="" itemSelect="onItemSelect">
+          <tnt:NavigationList id="navigationList">
+            <tnt:NavigationListItem id="DESKInventoryNavID" expanded="false" select="onViewInventory" text="Inventory" icon="sap-icon://write-new-document"/>
+            <tnt:NavigationListItem id="DESKUpload" expanded="false" select="onPressUpload" text="Upload" icon="sap-icon://upload"/>
+            <tnt:NavigationListItem id="DESKDownload" expanded="false" select="onRootItemSelect" text="Download" icon="sap-icon://download"/>
+            <tnt:NavigationListItem id="DESKUser" expanded="false" select="onChangePassword" text="Change Password" icon="sap-icon://two-keys"/>
+            <tnt:NavigationListItem text="Logout" icon="sap-icon://log" select="onLogout"/>
+          </tnt:NavigationList>
+        </tnt:SideNavigation>
+
+
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="pageContainer">
+				<pages>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

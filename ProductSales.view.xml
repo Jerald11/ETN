@@ -1,0 +1,85 @@
+ <mvc:View controllerName="claims.Entrego.view.ProductSales"
+  displayBlock="true"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:m="sap.m"
+  xmlns:u="sap.ui.unified"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:l="sap.ui.layout"
+  xmlns="sap.ui.table"
+  xmlns:html="http://www.w3.org/1999/xhtml">
+  <m:Page title="Inventory Sales">
+    <m:content>
+      <m:OverflowToolbar>
+        <m:Button text="Add to Cart" icon="sap-icon://cart" press="onAddToCart"/>
+        <m:Button text="Place Order" icon="sap-icon://cart-full" press="cleardate"/>
+        <m:ToolbarSpacer width="91%"/>
+        <m:Title id="amountid" level="H3" text="P0.00" />
+      </m:OverflowToolbar>
+
+      <TreeTable id="Inventory" visibleRowCount="13" enableCellFilter="true" rowSelectionChange="onCompute"
+        filter="filterInquiry" selectionMode="MultiToggle" enableSelectAll="false" ariaLabelledBy="title"
+        rows="{path:'oModel>/InventoryRecord', parameters: {arrayNames:['']}}">
+                <columns>
+                          <Column width="9rem" filterProperty="SKU_Name">
+                            <m:Label text="Name"/>
+                            <template>
+                              <m:Link text="{oModel>SKU_Name}"
+                                href="{ProductPicUrl}"
+                                press="ViewRecord"/>
+                            </template>
+                          </Column>
+
+                          <!-- <Column width="10rem">
+                            <m:Label text="SKU"/>
+                            <template>
+                              <m:ObjectStatus class="sapUiSmallMarginBottom" textAlign="Center" text="{oModel>Status}" inverted="true" state="{oModel>State}" />
+                            </template>
+                          </Column> -->
+
+                          <Column width="7rem" filterProperty="SKU_Code">
+                            <m:Label text="SKU"/>
+                            <template>
+                              <m:Text text="{oModel>SKU_Code}" wrapping="true"/>
+                            </template>
+                          </Column>
+
+                          <Column width="41em" filterProperty="SKU_Description" wrapping="true">
+                            <m:Label text="Description"/>
+                            <template>
+                              <m:Text text="{oModel>SKU_Description}" wrapping="true"/>
+                            </template>
+                          </Column>
+
+                         <Column width="6em" filterProperty="Category">
+                            <m:Label text="Category"/>
+                            <template>
+                              <m:Text text="{oModel>Category}" wrapping="false"/>
+                            </template>
+                          </Column>
+
+                          <Column width="6rem">
+                            <m:Label text="Price"/>
+                            <template>
+                              <m:Text text="{oModel>Price}" wrapping="false"/>
+                            </template>
+                          </Column>
+
+                          <Column width="5rem">
+                            <m:Label text="Quantity"/>
+                            <template>
+                              <m:Text text="{oModel>Quantity}" wrapping="false"/>
+                            </template>
+                          </Column>
+
+                          <Column width="4em" filterProperty="UnitOfMeasure">
+                            <m:Label text="UoM"/>
+                            <template>
+                              <m:Text text="{oModel>UnitOfMeasure}" wrapping="false"/>
+                            </template>
+                          </Column>
+                </columns>
+            </TreeTable>
+    </m:content>
+</m:Page>
+</mvc:View>

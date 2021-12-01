@@ -1,0 +1,108 @@
+ <mvc:View controllerName="claims.Entrego.view.MainDashBoard"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:l="sap.ui.layout"
+  xmlns:html="http://www.w3.org/1999/xhtml">
+  <App id="MainDashBoard" >
+  <Page showHeader="false" class="SAPFioriBody">
+   <IconTabBar id="iddash" headerMode="Inline" class="SAPFiori">
+     <items class="SAPFiori">
+
+       <IconTabFilter id="AdminTab" visible="true" class="SAPFiori" text="Home" key="Administrator">
+         <content class="SAPFiori">
+           <GenericTile id="DASHAP" visible="true" header="Orders" press="onApprovalProcess" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" subheader="">
+               <TileContent unit="">
+                 <NumericContent id="SRID" value="0" icon="sap-icon://approvals" withMargin="false" />
+               </TileContent>
+           </GenericTile>
+
+           <GenericTile id="DASHAD" visible="true" header="Inventory" press="onApprovalDecion" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" subheader="">
+             <TileContent unit="">
+               <NumericContent id="INID" value="0" icon="sap-icon://simulate" withMargin="false" />
+             </TileContent>
+           </GenericTile>
+           
+
+           <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header=""
+           subheader="Link tile" press="press" url="https://www.google.com/">
+           <TileContent>
+             <ImageContent src="resources/img/Icon.png" />
+           </TileContent>
+         </GenericTile>
+
+         <GenericTile id="UsersTile" visible="true" header="Users" press="" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" subheader="">
+          <TileContent unit="">
+            <NumericContent id="ITMID" value="0" icon="sap-icon://employee" withMargin="false" />
+          </TileContent>
+        </GenericTile>
+
+
+           <SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
+             <GenericTile
+               backgroundImage="resources/img/1.jfif"
+               frameType="TwoByOne">
+               <TileContent unit="" footer="">
+               </TileContent>
+             </GenericTile>
+
+             <GenericTile
+             backgroundImage="resources/img/2.jfif"
+               frameType="TwoByOne" press="press">
+               <TileContent unit="" footer=""/>
+             </GenericTile>
+
+             <GenericTile
+              backgroundImage="resources/img/3.jfif"
+                frameType="TwoByOne" press="press">
+                <TileContent unit="" footer="">
+                </TileContent>
+              </GenericTile>
+            </SlideTile>
+
+           <SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
+             <GenericTile
+               backgroundImage="resources/img/4.jfif"
+               frameType="TwoByOne">
+               <TileContent unit="" footer="">
+               </TileContent>
+             </GenericTile>
+
+             <GenericTile
+             backgroundImage="resources/img/5.png"
+               frameType="TwoByOne" press="press">
+               <TileContent unit="" footer="">
+
+               </TileContent>
+             </GenericTile>
+
+             <GenericTile
+             backgroundImage="resources/img/6.png"
+               frameType="TwoByOne" press="press">
+               <TileContent unit="" footer="">
+                 <NewsContent
+                   contentText=""
+                   subheader="" />
+               </TileContent>
+             </GenericTile>
+
+             <GenericTile
+             backgroundImage="resources/img/7.jfif"
+               frameType="TwoByOne" press="press">
+               <TileContent unit="" footer="">
+                 <NewsContent
+                   contentText=""
+                   subheader="" />
+               </TileContent>
+             </GenericTile>
+
+           </SlideTile>
+         </content>
+       </IconTabFilter>
+
+     </items>
+   </IconTabBar>
+</Page>
+  </App>
+</mvc:View>
